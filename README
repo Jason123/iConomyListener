@@ -1,0 +1,16 @@
+This is free to use and open source!
+Author: Tunix2
+
+
+
+This is my version of the unsupported old iConomyListener.
+
+It uses vault to easily hook into all the other economy files.
+
+I used Vault instead of Register because Vault seem way simpler.
+
+
+
+Changelog:
+
+V0.1 First Version released.
