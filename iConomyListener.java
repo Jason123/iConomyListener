@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
 //import org.bukkit.ChatColor;
 //test
 import org.bukkit.entity.Player;
@@ -60,10 +61,11 @@ public class iConomyListener implements VoteListener {
 	
 	
 	public static Economy economy = null;
+	Server server = Bukkit.getServer();
 	
     private Boolean setupEconomy()
     {
-        RegisteredServiceProvider<Economy> economyProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+        RegisteredServiceProvider<Economy> economyProvider = server.getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
         if (economyProvider != null) {
             economy = economyProvider.getProvider();
         }
@@ -74,11 +76,11 @@ public class iConomyListener implements VoteListener {
 	@Override
 	public void voteMade(Vote vote) {
 		String username = vote.getUsername();
-		Player player = Bukkit.getServer().getPlayer(username);
+		Player player = server.getPlayer(username);
 		
 		
 		if (player != null){
-		economy.depositPlayer(username, amount);
+		economy.depositPlayer(player.getName(), amount);
 		player.sendMessage("Thanks for voting on " + vote.getServiceName() + "!");
 		player.sendMessage(amount + " has been added to your iConomy balance.");
 		
